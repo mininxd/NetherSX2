@@ -24,4 +24,4 @@ They aim to do the following:
 * Android Keystore: <https://github.com/jorfao/pkStore>
 * Alternate Keystore: <https://github.com/tytydraco/public-keystore>
 * Android build-tools: <https://androidsdkmanager.azurewebsites.net/Buildtools>
-* 
+  
