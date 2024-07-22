@@ -1,0 +1,11 @@
+name: Set Changelog
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  after-release:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Name: ${{ github.event.release.name }} Description: ${{ github.event.release.body }}"
