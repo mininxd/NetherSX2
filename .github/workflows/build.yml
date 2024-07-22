@@ -18,7 +18,7 @@ jobs:
        
     - name: install dependencies
       run: |
-       sudo apt install xdelta xdelta3 jq curl zip -y
+       sudo apt install xdelta xdelta3 jq curl -y
 
     - name: Build the APK
       run: |
@@ -42,7 +42,6 @@ jobs:
       run : |
        mkdir logs
        cp -r body.txt changelog.txt tag.txt ./logs
-       zip -r txtFiles.zip ./logs
 
     - name: Check Directory
       run : |
@@ -52,8 +51,8 @@ jobs:
     - name: Upload to Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: txtFiles.zip
-        path: ./txtFiles.zip
+        name: txtFiles
+        path: ./logs
 
     - name: Create Release
       id: create_release
