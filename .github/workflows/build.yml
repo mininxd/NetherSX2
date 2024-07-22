@@ -48,7 +48,7 @@ jobs:
       run : |
        mkdir logs
        cp -r body.txt changelog.txt tag.txt ./logs
-       zip -r ./logs txtFiles.zip
+       zip -r txtFiles.zip ./logs
 
     - name: Upload to Artifact
       uses: actions/upload-artifact@v3
