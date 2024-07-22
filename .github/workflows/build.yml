@@ -46,15 +46,15 @@ jobs:
 
     - name: copy artifacts
       run : |
-       mkdir logs && cd logs
-       cp body.txt changelog.txt tag.txt ./logs
-       zip -r ./* logs.zip
+       mkdir logs
+       cp -r body.txt changelog.txt tag.txt ./logs
+       zip -r ./logs txtFiles.zip
 
     - name: Upload to Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: logs.zip
-        path: ./logs
+        name: txtFiles.zip
+        path: ./txtFiles.zip
 
     - name: Create Release
       id: create_release
