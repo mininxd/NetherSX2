@@ -26,6 +26,15 @@ jobs:
        curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].tag_name' > tag.txt
        xdelta3 -d -f -s 15210-v1.5-4248.apk ./lib/nethersx2.xdelta NetherSX2.apk
      
+    - name: set variables
+      id: variable
+      run: |
+       body=$(cat body.txt)
+       echo "::set-output name=body::$body"
+       tag=$(cat tag.txt)
+       echo "::set-output name=tag::$tag"
+
+
     - name: Check Directory
       run : |
        ls -a
@@ -44,8 +53,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           tag_name: ${{ github.workflow_sha }}
-          release_name: ${{ readFile('tag.txt') }}
-          body: ${{ readFile('body.txt') }}
+          release_name: ${{ steps.variable.outputs.tag }}
+          body: ${{ steps.variable.outputs.body }}
 
 
         
