@@ -28,11 +28,11 @@ jobs:
        ls -a
        tree ./
 
-    - name: Upload the mod!
+    - name: Upload to artifact
       uses: actions/upload-artifact@v3
       with:
         name: netherSX2.apk
-        path: ./lib
+        path: ./
 
     - name: Create Release
       id: create_release
@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./lib/netherSX2.apk
+          asset_path: ./netherSX2.apk
           asset_name: netherSX2.apk
           asset_content_type: application/octet-stream
 
