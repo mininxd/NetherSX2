@@ -8,4 +8,7 @@ jobs:
   after-release:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Name: ${{ github.event.release.name }} Description: ${{ github.event.release.body }}"
+    
+    - name: Check Directory
+      run : |
+       echo "Name: ${{ github.event.release.name }} Description: ${{ github.event.release.body }}"
