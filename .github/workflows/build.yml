@@ -73,7 +73,4 @@ jobs:
           asset_name: NetherSX2.apk
           asset_content_type: application/octet-stream
 
-    - name: set Changelog
-      uses: thomaseizinger/keep-a-changelog-new-release@3.0.0
-
-      
+  
