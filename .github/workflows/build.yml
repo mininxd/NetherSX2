@@ -1,0 +1,57 @@
+name: NetherSX2 Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout repository...
+      uses: actions/checkout@v4.1.7
+
+    - name: Check Directory
+      run : |
+       ls -a
+       tree ./
+
+    - name: Build the APK
+      run: |
+       cd lib 
+       ./xdelta3 -d -f -s ../15210-v1.5-4248.apk patch.xdelta netherSX2.apk
+     
+    - name: Check Directory
+      run : |
+       ls -a
+       tree ./
+
+    - name: Upload the mod!
+      uses: actions/upload-artifact@v3
+      with:
+        name: netherSX2.apk
+        path: ./lib
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: ${{ github.run_number }}${{ github.workflow_sha }}
+          release_name: ${{ github.workflow_sha }}
+
+
+        
+    - name: release assets
+      id: upload-to-assets
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./lib/netherSX2.apk
+          asset_name: netherSX2.apk
+          asset_content_type: application/octet-stream
+
+          
