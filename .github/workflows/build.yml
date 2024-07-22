@@ -54,7 +54,7 @@ jobs:
       with:
           tag_name: ${{ github.run_number }}${{ github.workflow_sha }}
           release_name: ${{ steps.variable.outputs.tag }}
-          body: ${{ steps.variable.outputs.body }}
+          body: ${{ steps.variable.outputs.body + '\n \n more detailed changelogs https://github.com/Trixarian/NetherSX2-patch/releases/' }}
 
 
         
