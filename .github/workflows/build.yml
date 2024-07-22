@@ -15,12 +15,13 @@ jobs:
       run : |
        ls -a
        tree ./
+       
+    - name: install dependencies
+      run: apt install xdelta xdelta3 -y
 
     - name: Build the APK
       run: |
-       cd lib 
-       chmod +x ./xdelta3
-       ./xdelta3 -d -f -s ../15210-v1.5-4248.apk patch.xdelta netherSX2.apk
+       xdelta3 -d -f -s 15210-v1.5-4248.apk patch.xdelta netherSX2.apk
      
     - name: Check Directory
       run : |
