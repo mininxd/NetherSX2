@@ -25,7 +25,6 @@ jobs:
        curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].body' > body.txt
        curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].tag_name' > tag.txt
        touch changelog.txt
-       echo "" >> changelog.txt
        echo -e "\nmore detailed changelogs: https://github.com/Trixarian/NetherSX2-patch/releases/" >> changelog.txt
        xdelta3 -d -f -s 15210-v1.5-4248.apk ./lib/nethersx2.xdelta NetherSX2.apk
      
