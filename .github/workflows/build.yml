@@ -87,14 +87,5 @@ jobs:
       with:
        upload_url: ${{ steps.create_release.outputs.upload_url }}
        assets: |
-         {
-          asset_path: ./NetherSX2.apk,
-          asset_name: NetherSX2.apk,
-          asset_content_type: application/octet-stream
-         },
-         {
-          asset_path: ./Sony PlayStation 2 BIOS (E)(v2.20).zip,
-          asset_name: Sony PlayStation 2 BIOS (E)(v2.20).zip,
-          asset_content_type: application/octet-stream
-         }
-  
+        ./NetherSX2.apk, NetherSX2.apk, application/octet-stream
+        ./Sony PlayStation 2 BIOS (E)(v2.20).zip, Sony PlayStation 2 BIOS (E)(v2.20).zip, application/octet-stream
