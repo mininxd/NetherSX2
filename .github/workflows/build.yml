@@ -18,14 +18,14 @@ jobs:
        
     - name: install dependencies
       run: |
-       sudo apt install xdelta xdelta3 jq curl -y
+       sudo apt install xdelta xdelta3 jq curl zip -y
 
     - name: Build the APK
       run: |
        curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].body' > body.txt
        curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].tag_name' > tag.txt
        touch changelog.txt
-       echo -e "\nmore detailed changelogs: https://github.com/Trixarian/NetherSX2-patch/releases/" >> changelog.txt
+       echo "   more detailed changelogs: https://github.com/Trixarian/NetherSX2-patch/releases/" >> changelog.txt
        xdelta3 -d -f -s 15210-v1.5-4248.apk ./lib/nethersx2.xdelta NetherSX2.apk
      
     - name: set variables
@@ -44,11 +44,17 @@ jobs:
        ls -a
        tree ./
 
+    - name: copy artifacts
+      run : |
+       mkdir logs && cd logs
+       cp body.txt changelog.txt tag.txt ./logs
+       zip -r ./* logs.zip
+
     - name: Upload to Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: NetherSX2.apk
-        path: ./
+        name: logs.zip
+        path: ./logs
 
     - name: Create Release
       id: create_release
@@ -72,5 +78,6 @@ jobs:
           asset_path: ./NetherSX2.apk
           asset_name: NetherSX2.apk
           asset_content_type: application/octet-stream
+
 
   
