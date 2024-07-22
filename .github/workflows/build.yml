@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - name: Checkout repository...
+    - name: Checkout
       uses: actions/checkout@v4.1.7
 
     - name: Check Directory
@@ -28,7 +28,7 @@ jobs:
        ls -a
        tree ./
 
-    - name: Upload to artifact
+    - name: Upload to Artifact
       uses: actions/upload-artifact@v3
       with:
         name: netherSX2.apk
@@ -55,5 +55,6 @@ jobs:
           asset_path: ./netherSX2.apk
           asset_name: netherSX2.apk
           asset_content_type: application/octet-stream
+
 
           
