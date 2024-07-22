@@ -24,6 +24,7 @@ jobs:
       run: |
        curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].body' > body.txt
        curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].tag_name' > tag.txt
+       echo "more detailed changelogs: https://github.com/Trixarian/NetherSX2-patch/releases/" > changelogs.txt
        xdelta3 -d -f -s 15210-v1.5-4248.apk ./lib/nethersx2.xdelta NetherSX2.apk
      
     - name: set variables
@@ -33,6 +34,8 @@ jobs:
        echo "::set-output name=body::$body"
        tag=$(cat tag.txt)
        echo "::set-output name=tag::$tag"
+       changelog=$(cat changelog.txt)
+       echo "::set-output name=changelog::$changelog"
 
 
     - name: Check Directory
@@ -54,7 +57,7 @@ jobs:
       with:
           tag_name: ${{ github.run_number }}${{ github.workflow_sha }}
           release_name: ${{ steps.variable.outputs.tag }}
-          body: ${{ concat(steps.variable.outputs.body,  '\n \n more detailed changelogs https://github.com/Trixarian/NetherSX2-patch/releases/') }}
+          body: ${{ steps.variable.outputs.body }}${{ steps.variable.outputs.changelog }}
 
 
         
