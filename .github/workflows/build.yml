@@ -38,17 +38,16 @@ jobs:
        changelog=$(cat changelog.txt)
        echo "::set-output name=changelog::$changelog"
 
-
-    - name: Check Directory
-      run : |
-       ls -a
-       tree ./
-
     - name: copy artifacts
       run : |
        mkdir logs
        cp -r body.txt changelog.txt tag.txt ./logs
        zip -r txtFiles.zip ./logs
+
+    - name: Check Directory
+      run : |
+        ls -a
+        tree ./
 
     - name: Upload to Artifact
       uses: actions/upload-artifact@v3
