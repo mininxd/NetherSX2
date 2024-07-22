@@ -21,7 +21,7 @@ jobs:
        sudo apt install xdelta xdelta3 jq curl -y
        
     - name: download BIOS
-       run: |
+      run: |
         mkdir BIOS && cd ./BIOS
         wget https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70004%5D.bin
         wget https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70008%5D.bin
