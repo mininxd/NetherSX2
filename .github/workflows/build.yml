@@ -17,11 +17,14 @@ jobs:
        tree ./
        
     - name: install dependencies
-      run: sudo apt install xdelta xdelta3 -y
+      run: |
+       sudo apt install xdelta xdelta3 jq curl -y
 
     - name: Build the APK
       run: |
-       xdelta3 -d -f -s 15210-v1.5-4248.apk ./lib/nethersx2.xdelta netherSX2.apk
+       curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].body' > body.txt
+       curl "https://api.mininxd.my.id/github/Trixarian/NetherSX2-patch/releases" | jq -r '.[0].tag_name' > tag.txt
+       xdelta3 -d -f -s 15210-v1.5-4248.apk ./lib/nethersx2.xdelta NetherSX2.apk
      
     - name: Check Directory
       run : |
@@ -31,7 +34,7 @@ jobs:
     - name: Upload to Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: netherSX2.apk
+        name: NetherSX2.apk
         path: ./
 
     - name: Create Release
@@ -40,8 +43,9 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-          tag_name: ${{ github.run_number }}${{ github.workflow_sha }}
-          release_name: ${{ github.workflow_sha }}
+          tag_name: ${{ github.workflow_sha }}
+          release_name: ${{ readFile('tag.txt') }}
+          body: ${{ readFile('body.txt') }}
 
 
         
@@ -52,9 +56,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./netherSX2.apk
-          asset_name: netherSX2.apk
+          asset_path: ./NetherSX2.apk
+          asset_name: NetherSX2.apk
           asset_content_type: application/octet-stream
 
+    - name: set Changelog
+      uses: thomaseizinger/keep-a-changelog-new-release@3.0.0
 
-          
+      
