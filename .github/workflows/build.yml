@@ -21,7 +21,7 @@ jobs:
 
     - name: Build the APK
       run: |
-       xdelta3 -d -f -s 15210-v1.5-4248.apk nethersx2.xdelta netherSX2.apk
+       xdelta3 -d -f -s 15210-v1.5-4248.apk ./lib/nethersx2.xdelta netherSX2.apk
      
     - name: Check Directory
       run : |
