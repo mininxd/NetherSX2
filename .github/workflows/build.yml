@@ -23,12 +23,12 @@ jobs:
     - name: download BIOS
       run: |
         mkdir BIOS && cd ./BIOS
-        wget 'https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70004%5D.bin'
-        wget 'https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70008%5D.bin'
-        wget 'https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70008%5D.mec'
-        wget 'https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70008%5D.nvm'
-        wget 'https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-11-04)%5BSCPH50003%5D.bin'
-        wget 'https://github.com/AetherSX2/bios/blob/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.20)(2006-02-10)%5BSCPH-77008%5D.bin'
+        wget 'https://github.com/AetherSX2/bios/raw/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70004%5D.bin'
+        wget 'https://github.com/AetherSX2/bios/raw/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70008%5D.bin'
+        wget 'https://github.com/AetherSX2/bios/raw/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70008%5D.mec'
+        wget 'https://github.com/AetherSX2/bios/raw/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-06-14)%5BSCPH70008%5D.nvm'
+        wget 'https://github.com/AetherSX2/bios/raw/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.0)(2004-11-04)%5BSCPH50003%5D.bin'
+        wget 'https://github.com/AetherSX2/bios/raw/main/Sony%20PlayStation%202%20BIOS%20(E)(v2.20)(2006-02-10)%5BSCPH-77008%5D.bin'
         cd ../
        
 
@@ -98,12 +98,4 @@ jobs:
        asset_name: Sony PlayStation 2 BIOS (E)(v2.20).zip
        asset_content_type: application/octet-stream
 
-    - name: Upload PS2 BIOS
-      uses: actions/upload-release-asset@v1
-      env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-       upload_url: ${{ steps.create_release.outputs.upload_url }}
-       asset_path: ./BIOS/Sony PlayStation 2 BIOS (E)(v2.0)(2004-11-04)[SCPH50003].bin
-       asset_name: Sony PlayStation 2 BIOS (E)(v2.0)(2004-11-04)[SCPH50003].bin
-       asset_content_type: application/octet-stream
+  
