@@ -98,8 +98,7 @@ jobs:
        asset_name: Sony PlayStation 2 BIOS (E)(v2.20).zip
        asset_content_type: application/octet-stream
 
-
-    - name: Upload Sony PlayStation 2 BIOS (E)(v2.20).bin
+    - name: Upload PS2 BIOS
       uses: actions/upload-release-asset@v1
       env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
